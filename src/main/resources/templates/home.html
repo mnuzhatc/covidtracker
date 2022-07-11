@@ -1,0 +1,50 @@
+<!-- access attribute from model -->
+<!DOCTYPE html>
+<html xmlns:th="http:/>/thymeleaf.org">
+
+    <head>
+        <title>COVID Tracker App</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- bootstrap css -->
+        <link href="bootstrap.css" rel="stylesheet">
+    </head>
+
+<body>
+<div class="container">
+    <div class="title">
+        <h1>COVID Tracker App</h1>
+        <p>This application lists the total number of cases reported in the USA, by county.</p>
+    </div>
+
+<div class="bg-primary">
+    <div class="text-bg">
+    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <p class="lead">Total cases reported as of today</p>
+    <hr class="my-4">
+    <p>
+        <span>New cases reported since previous day: </span>
+        <span th:text="${totalNewCases}"></span>
+    </p>
+    </div>
+</div>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>County</th>
+            <th>State</th>
+            <th>Total cases reported</th>
+            <th>Changes since previous day</th>
+
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.county}"></td>
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.NewTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>
